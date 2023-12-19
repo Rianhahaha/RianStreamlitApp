@@ -1,0 +1,12 @@
+streamlit
+wikipediaapi
+textblob
+pandas
+altair
+vaderSentiment
+nltk
+wordcloud
+pyplot
+streamlit_option_menu
+sklearn
+string
