@@ -1,4 +1,4 @@
-wikipediaapi==0.6.0
+Wikipedia-API==0.6.0
 textblob==0.17.1
 pandas==2.0.3
 altair==5.0.1
