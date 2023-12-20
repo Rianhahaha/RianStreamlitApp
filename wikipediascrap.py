@@ -21,6 +21,7 @@ from nltk.corpus import stopwords
 import time
 # Ensure NLTK resources are available
 nltk.download('vader_lexicon')
+nltk.download('stopwords')
 
 # css 
 
