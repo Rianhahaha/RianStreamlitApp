@@ -22,6 +22,7 @@ import time
 # Ensure NLTK resources are available
 nltk.download('vader_lexicon')
 nltk.download('stopwords')
+nltk.download('punkt')
 
 # css 
 
