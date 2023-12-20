@@ -19,7 +19,8 @@ from sklearn.preprocessing import LabelEncoder
 import string
 from nltk.corpus import stopwords
 import time
-
+# Ensure NLTK resources are available
+nltk.download('vader_lexicon')
 
 # css 
 
