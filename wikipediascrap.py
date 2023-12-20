@@ -19,11 +19,11 @@ from sklearn.preprocessing import LabelEncoder
 import string
 from nltk.corpus import stopwords
 import time
+
 # Ensure NLTK resources are available
 nltk.download('vader_lexicon')
 nltk.download('stopwords')
 nltk.download('punkt')
-
 # css 
 
 
@@ -404,10 +404,31 @@ Seorang mahasiswa Teknologi Informasi yang mengkhususkan diri dalam desain grafi
                     threshold = 0.0  # You may adjust this threshold based on your data characteristics
 
                     # Assign labels based on the threshold
+                    def assign_label(row, threshold):
+                        positive_score = row['Positive Scores']
+                        if positive_score is None:
+                            st.warning("Nilai Positif tidak ditemukan")
+                            return 'neutral'
+
+
+                        negative_score = row['Negative Scores']
+                        if negative_score is None:
+                            st.warning("Nilai Negatif tidak ditemukan")
+                            return 'neutral'
+
+                        if positive_score > threshold:
+                            return 'positive'
+                        elif negative_score < -threshold:
+                            return 'negative'
+                        else:
+                            return 'neutral'
                     token_sentiments_df['Label'] = token_sentiments_df.apply(
-                        lambda row: 'positive' if row['Positive Scores'] > threshold else ('negative' if row['Negative Scores'] else 'neutral'),
-                        axis=1
+                        lambda row, threshold: assign_label(row, threshold),
+                        axis=1,
+                        threshold=threshold
                     )
+
+
                     # col1,col2 = st.columns(2)
                     # with col1:
                     #     token_sentiments_df['Features']
@@ -458,6 +479,7 @@ Seorang mahasiswa Teknologi Informasi yang mengkhususkan diri dalam desain grafi
                     metrics_df = pd.DataFrame(metrics_data)
 
                     # Display the DataFrame using Streamlit
+                
                     st.dataframe(metrics_df)
 
 
